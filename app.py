@@ -23,4 +23,6 @@ def predict():
     result = model.predict(input_query)
     return jsonify({'placement':str(result)})
 
-app.run()
+
+if __name__ == '__main__':
+    app.run()
