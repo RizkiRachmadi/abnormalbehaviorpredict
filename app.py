@@ -4,6 +4,7 @@ import pickle
 import lightgbm
 
 app = Flask(__name__)
+model = pickle.load(open('models/lightgbm_6features.pkl', 'rb'))
 
 @app.route('/')
 def home():
@@ -19,7 +20,7 @@ def predict():
     gyr_z = request.form.get('gyr_x')
     input_query = np.array([[acc_x,acc_y,acc_z,
                              gyr_x,gyr_y,gyr_z]])
-    model = pickle.load(open('models/lightgbm_6features.pkl', 'rb'))
+    input_query = input_query.reshape(1,-1)
     result = model.predict(input_query)
     return jsonify({'placement':str(result)})
 
