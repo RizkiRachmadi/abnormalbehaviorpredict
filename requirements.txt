@@ -7,5 +7,4 @@ scipy
 threadpoolctl
 Werkzeug
 gunicorn
-pickle
 lightgbm
