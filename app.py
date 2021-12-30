@@ -22,8 +22,7 @@ def predict():
                              gyr_x,gyr_y,gyr_z]])
     input_query = input_query.reshape(1,-1)
     result = model.predict(input_query)
-    return jsonify({'placement':str(result)})
-
+    return (str(result))
 
 if __name__ == '__main__':
     app.run()
