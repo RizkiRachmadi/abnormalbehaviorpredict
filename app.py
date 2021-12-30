@@ -4,7 +4,6 @@ import pickle
 
 app = Flask(__name__)
 # read our pickle file and label our logisticmodel as model
-model = pickle.load(open('lightgbm_6features.pkl', 'rb'))
 
 @app.route('/')
 def home():
@@ -20,6 +19,7 @@ def predict():
     gyr_z = request.form.get('gyr_x')
     input_query = np.array([[acc_x,acc_y,acc_z,
                              gyr_x,gyr_y,gyr_z]])
+    model = pickle.load(open('lightgbm_6features.pkl', 'rb'))
     result = model.predict(input_query)
     return jsonify({'placement':str(result)})
 
