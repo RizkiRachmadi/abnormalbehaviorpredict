@@ -10,7 +10,7 @@ model = pickle.load(open('lightgbm_6features.pkl', 'rb'))
 def home():
     return "connected to Heroku API"
 
-@app.route('/predict',methods=['POST','GET'])
+@app.route('/predict',methods=['POST'])
 def predict():
     acc_x = request.form.get('acc_x')
     acc_y = request.form.get('acc_y')
@@ -23,5 +23,4 @@ def predict():
     result = model.predict(input_query)
     return jsonify({'placement':str(result)})
 
-if __name__ == "__main__":
-    app.run(debug=True)
+app.run()
